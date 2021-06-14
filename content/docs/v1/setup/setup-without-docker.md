@@ -52,26 +52,7 @@ For security reasons the application won't run from the base folder where you ex
 
 If you are using Apache, LinkAce already ships with a proper .htaccess file.
 
-If you are using nginx, please add the following lines to your nginx configuration file:
-
-```
-add_header X-Frame-Options "SAMEORIGIN";
-add_header X-XSS-Protection "1; mode=block";
-add_header X-Content-Type-Options "nosniff";
-
-location / {
-  try_files $uri $uri/ /index.php?$query_string;
-}
-
-location ~* \.(?:css|js|map|scss)$ {
-  expires 7d;
-  access_log off;
-  add_header Cache-Control "public";
-  try_files $uri @fallback;
-}
-
-error_page 404 /index.php;
-```
+If you are using nginx, see the docker nginx configuration for guidance.
 
 ### 5. Run the built-in setup
 
